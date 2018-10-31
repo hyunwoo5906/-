@@ -14,14 +14,23 @@ public class Baekjoon9012 {
 		for(int i=0;i<count;i++) {
 			String test = br.readLine();
 			Stack<Character> st = new Stack<Character>();
+			boolean isVPS=true;
 			for(int j=0;j<test.length();j++) {
 				char temp=test.charAt(j);
+				
 				if(temp=='(') 
 					st.push(temp);
-				else if(temp==')')
-					st.pop();
+				else if(temp==')') {
+					if(!st.empty())
+						st.pop();
+					else {
+						isVPS=false;
+						break;
+					}
+				}
 			}
-			if(st.empty()==true)
+			if(!st.isEmpty()) isVPS=false;
+			if(isVPS)
 				System.out.println("YES");
 			else
 				System.out.println("NO");
